@@ -126,6 +126,31 @@ footer {
 	max-width: 300px;
 }
 
+/*追加コンテンツ(レビュー)*/
+ .input-range{
+	 display:none;
+ }
+ 
+ #range-group{
+	 position: relative;
+ }
+ 
+ #range-group > a{
+	 display:inline-block;
+	 width:20px;
+	 height:20px;
+ }
+ 
+ #range-group > a:before{
+	 content:"/&#9733";
+	 font-size: 20px;
+ }
+ 
+ #range-group > a:after{
+	 content:"/&#9734";
+	 font-size:20px;
+ }
+
 @media screen and (min-width: 1400px) {
 	.samuraitravel-container {
 		max-width: 1200px;

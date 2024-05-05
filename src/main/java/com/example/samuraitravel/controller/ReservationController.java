@@ -45,7 +45,7 @@ public class ReservationController {
 		this.stripeService = stripeService;
 	}
 
-	@GetMapping("/reservation")
+	@GetMapping("/reservations")
 	public String index(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			@PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable,
 			Model model) {

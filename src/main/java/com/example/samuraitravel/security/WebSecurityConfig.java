@@ -33,13 +33,14 @@ public class WebSecurityConfig {
                 .logoutSuccessUrl("/?loggedOut")  // ログアウト時のリダイレクト先URL
                 .permitAll()
             )  
-            .csrf().ignoringRequestMatchers("/stripe/webhook");
+            .csrf((csrf) -> csrf
+            		.ignoringRequestMatchers("/stripe/webhook"));
             
         return http.build();
     }
     
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

@@ -1,16 +1,20 @@
 package com.example.samuraitravel.security;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.example.samuraitravel.entity.Reviewformat;
 import com.example.samuraitravel.entity.User;
 
 public class UserDetailsImpl implements UserDetails {
 	private final User user;
 	private final Collection<GrantedAuthority> authorities;
+	
 
+	
 	public UserDetailsImpl(User user, Collection<GrantedAuthority> authorities) {
 		this.user = user;
 		this.authorities = authorities;
@@ -20,7 +24,12 @@ public class UserDetailsImpl implements UserDetails {
 		return user;
 	}
 
-	// ハッシュ化済みのパスワードを返す
+	 // `User` クラスから `List<Reviewformat>` のレビューリストを取得するゲッターメソッドを追加
+    public List<Reviewformat> getReviews() {
+        return user.getReviews();
+    }
+	
+ 	// ハッシュ化済みのパスワードを返す
 	@Override
 	public String getPassword() {
 		return user.getPassword();
@@ -61,5 +70,7 @@ public class UserDetailsImpl implements UserDetails {
 	public boolean isEnabled() {
 		return user.getEnabled();
 	}
+	
+	
 
 }
