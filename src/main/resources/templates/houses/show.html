@@ -186,14 +186,15 @@
 														th:text="${#authentication.principal.user.name}"></h3>
 													<div class="d-flex align-items-start pull-right">
 														<a
-															th:href="@{/houses/__${house.getId()}__/review/__${reviews.getId()}__/edit}">編集</a>
-														<a th:href="@{/houses/__${house.getId()}__/review/__${reviews.getId()}__/delete}"
+															th:href="@{/houses/__${house.getId()}__/review/__${review.getId()}__/edit}">編集</a>
+														<a th:href="@{/houses/__${house.getId()}__/review/__${review.getId()}__/delete}"
 															class="samuraitravel-link-danger" data-bs-toggle="modal"
-															th:data-bs-target="${'#deleteReviewModal' + reviews.getId()}">削除</a>
+															th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>
 													</div>
 													<p class="card-text mb-2">
 														<small class="text-muted"
-															th:text="${#authentication.principal.reviews.createdAt}"></small>
+															th:text="${#authentication.principal.review.createdAt}"></small>
+													
 													</p>
 													<p class="card-text">
 														<span
@@ -209,7 +210,7 @@
 													</p>
 													<p class="card-text">
 														<h8 class="card-text mb-3"
-															th:text="${#authentication.principal.reviews.review}"></h8>
+															th:text="${#authentication.principal.review.review}"></h8>
 													</p>
 												</div>
 											</div>
