@@ -191,11 +191,11 @@
 															class="samuraitravel-link-danger" data-bs-toggle="modal"
 															th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>
 													</div>
-													<p class="card-text mb-2">
+													<!--<p class="card-text mb-2">
 														<small class="text-muted"
 															th:text="${#authentication.principal.review.createdAt}"></small>
 													
-													</p>
+													</p>-->
 													<p class="card-text">
 														<span
 															th:if="${#authentication.principal.reviews.rating=='1'}">&#9733;&#9734;&#9734;&#9734;&#9734;</span>

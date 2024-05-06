@@ -1,12 +1,10 @@
 package com.example.samuraitravel.security;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.samuraitravel.entity.Reviewformat;
 import com.example.samuraitravel.entity.User;
 
 public class UserDetailsImpl implements UserDetails {
@@ -24,10 +22,10 @@ public class UserDetailsImpl implements UserDetails {
 		return user;
 	}
 
-	 // `User` クラスから `List<Reviewformat>` のレビューリストを取得するゲッターメソッドを追加
-    public List<Reviewformat> getReviews() {
-        return user.getReviews();
-    }
+	/*	 // `User` クラスから `List<Reviewformat>` のレビューリストを取得するゲッターメソッドを追加
+	public List<Reviewformat> getReview() {
+	    return user.getReview();
+	}*/
 	
  	// ハッシュ化済みのパスワードを返す
 	@Override

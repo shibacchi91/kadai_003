@@ -59,10 +59,7 @@ public class User {
 
 	// Reviewオブジェクトのリスト
 	@OneToMany(mappedBy = "user")
-	private List<Reviewformat> reviews;
+	private List<Reviewformat> review;
 
-	// reviewsプロパティのゲッターメソッド
-	public List<Reviewformat> getReviews() {
-		return reviews;
-	}
+
 }
