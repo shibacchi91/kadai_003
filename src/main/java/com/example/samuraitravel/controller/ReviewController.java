@@ -25,7 +25,7 @@ import com.example.samuraitravel.repository.ReviewRepository;
 import com.example.samuraitravel.security.UserDetailsImpl;
 import com.example.samuraitravel.service.ReviewService;
 
-//追加コンテンツ
+//レビューコンテンツ
 @Controller
 @RequestMapping("/houses/{houseId}/review")
 public class ReviewController {
