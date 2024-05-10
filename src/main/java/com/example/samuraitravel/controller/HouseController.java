@@ -97,7 +97,8 @@ public class HouseController {
 
 		House house = houseRepository.getReferenceById(id);
 		Page<Reviewformat> reviewPage;
-		reviewPage = reviewRepository.findAll(pageable);
+		/*	reviewPage = reviewRepository.findAll(pageable);*/
+		reviewPage = reviewRepository.findByHouseOrderByCreatedAtDesc(house,pageable);
 		User user = userDetailsImpl.getUser();
 		Reviewformat review = reviewRepository.getReferenceById(id);
 		ReservationInputForm reservationInputForm = new ReservationInputForm();

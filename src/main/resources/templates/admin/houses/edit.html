@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- <html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 	<div th:replace="~{fragment :: meta}"></div>
@@ -9,7 +9,7 @@
 	<title>民宿情報編集</title>
 </head>
 
-<body>
+<divbody>
 	<div class="samuraitravel-wrapper">
 		<!-- ヘッダー -->
 		<div th:replace="~{fragment :: header}"></div>
@@ -137,13 +137,13 @@
 				</div>
 			</div>
 		</main>
-
-		<!-- フッター -->
-		<div th:replace="~{fragment :: footer}"></div>
 	</div>
+	<!-- フッター -->
+	<div th:replace="~{fragment :: footer}"></div>
+
 
 	<div th:replace="~{fragment :: scripts}"></div>
 	<script th:src="@{/js/preview.js}"></script>
-</body>
+	</body>
 
 </html>
