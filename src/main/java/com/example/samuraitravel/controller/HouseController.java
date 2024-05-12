@@ -97,22 +97,49 @@ public class HouseController {
 
 		House house = houseRepository.getReferenceById(id);
 		Page<Reviewformat> reviewPage;
-		/*	reviewPage = reviewRepository.findAll(pageable);*/
-		reviewPage = reviewRepository.findByHouseOrderByCreatedAtDesc(house,pageable);
-		User user = userDetailsImpl.getUser();
-		Reviewformat review = reviewRepository.getReferenceById(id);
-		ReservationInputForm reservationInputForm = new ReservationInputForm();
-		ReviewRegisterForm reviewRegisterForm = new ReviewRegisterForm(house.getId(), user.getId(), review.getRating(),
-				review.getReview());
 
-		model.addAttribute("reviewPage", reviewPage);
-		model.addAttribute("house", house);
-		model.addAttribute("reservationInputForm", reservationInputForm);
-		model.addAttribute("review", review);
-		model.addAttribute("user", user);
-		model.addAttribute("reviewRegisterForm", reviewRegisterForm);
+		if (userDetailsImpl != null && userDetailsImpl.getUser() != null) {
+			/*	reviewPage = reviewRepository.findAll(pageable);*/
+			reviewPage = reviewRepository.findByHouseOrderByCreatedAtDesc(house, pageable);
 
-		return "houses/show";
+			// レビューが存在しない場合の処理
+			if (reviewPage.getTotalElements() == 0) {
+				model.addAttribute("noReviewsMessage", "まだレビューがありません");
+			} else {
+				// レビューが存在する場合の処理
+				model.addAttribute("reviewPage", reviewPage);
+			}
 
+			User user = userDetailsImpl.getUser();
+
+			Reviewformat review = reviewRepository.getReferenceById(id);
+			ReservationInputForm reservationInputForm = new ReservationInputForm();
+			ReviewRegisterForm reviewRegisterForm = new ReviewRegisterForm(house.getId(), user.getId(),
+					review.getRating(),
+					review.getReview());
+
+			model.addAttribute("reservationInputForm", reservationInputForm);
+			model.addAttribute("review", review);
+			model.addAttribute("user", user);
+			model.addAttribute("reviewRegisterForm", reviewRegisterForm);
+
+			model.addAttribute("house", house);
+
+			return "houses/show";
+
+		} else {
+			// 未ログインの場合でもレビューの表示を行う
+			reviewPage = reviewRepository.findByHouseOrderByCreatedAtDesc(house, pageable);
+			if (reviewPage.isEmpty()) {
+				model.addAttribute("noReviewsMessage", "まだレビューがありません");
+			} else {
+				model.addAttribute("reviewPage", reviewPage);
+			}
+
+			// ビューに渡すデータの設定
+			model.addAttribute("house", house);
+
+			return "houses/notshow";
+		}
 	}
 }

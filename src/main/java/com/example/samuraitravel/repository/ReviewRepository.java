@@ -15,6 +15,6 @@ public interface ReviewRepository extends JpaRepository<Reviewformat, Integer>{
 	Reviewformat getReferenceById(Reviewformat review);
 	public Page<Reviewformat> findByUserOrderByCreatedAtDesc(User user,Pageable pageable);
 
-	
 	public Page<Reviewformat> findByHouseOrderByCreatedAtDesc(House house, Pageable pageable);
+
 }

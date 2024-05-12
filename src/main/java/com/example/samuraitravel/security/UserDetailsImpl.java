@@ -10,9 +10,7 @@ import com.example.samuraitravel.entity.User;
 public class UserDetailsImpl implements UserDetails {
 	private final User user;
 	private final Collection<GrantedAuthority> authorities;
-	
 
-	
 	public UserDetailsImpl(User user, Collection<GrantedAuthority> authorities) {
 		this.user = user;
 		this.authorities = authorities;
@@ -26,8 +24,8 @@ public class UserDetailsImpl implements UserDetails {
 	public List<Reviewformat> getReview() {
 	    return user.getReview();
 	}*/
-	
- 	// ハッシュ化済みのパスワードを返す
+
+	// ハッシュ化済みのパスワードを返す
 	@Override
 	public String getPassword() {
 		return user.getPassword();
@@ -68,7 +66,5 @@ public class UserDetailsImpl implements UserDetails {
 	public boolean isEnabled() {
 		return user.getEnabled();
 	}
-	
-	
 
 }
