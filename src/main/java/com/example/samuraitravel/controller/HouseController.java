@@ -20,16 +20,20 @@ import com.example.samuraitravel.form.ReviewRegisterForm;
 import com.example.samuraitravel.repository.HouseRepository;
 import com.example.samuraitravel.repository.ReviewRepository;
 import com.example.samuraitravel.security.UserDetailsImpl;
+import com.example.samuraitravel.service.FavoriteService;
 
 @Controller
 @RequestMapping("/houses")
 public class HouseController {
 	private final HouseRepository houseRepository;
 	private final ReviewRepository reviewRepository;
-
-	public HouseController(HouseRepository houseRepository, ReviewRepository reviewRepository) {
+	private final FavoriteService favoriteService;
+	
+	public HouseController(HouseRepository houseRepository, ReviewRepository reviewRepository, FavoriteService favoriteService) {
 		this.houseRepository = houseRepository;
 		this.reviewRepository = reviewRepository;
+		this.favoriteService = favoriteService;
+		
 	}
 
 	@GetMapping
@@ -94,8 +98,11 @@ public class HouseController {
 	public String show(@PathVariable(name = "id") Integer id, Model model,
 			@PageableDefault(page = 0, size = 6, sort = "id", direction = Direction.ASC) Pageable pageable,
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
-
+		
 		House house = houseRepository.getReferenceById(id);
+		boolean isFavorite = favoriteService.isFavorite(house,userDetailsImpl.getUser());
+		
+		
 		Page<Reviewformat> reviewPage;
 
 		if (userDetailsImpl != null && userDetailsImpl.getUser() != null) {
@@ -122,7 +129,7 @@ public class HouseController {
 			model.addAttribute("review", review);
 			model.addAttribute("user", user);
 			model.addAttribute("reviewRegisterForm", reviewRegisterForm);
-
+			model.addAttribute("isFavorite", isFavorite);
 			model.addAttribute("house", house);
 
 			return "houses/show";

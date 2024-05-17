@@ -27,6 +27,25 @@
 								<li class="breadcrumb-item active" aria-current="page">民宿詳細</li>
 							</ol>
 						</nav>
+						<!-- Thymeleafテンプレート内のお気に入り解除フォーム -->
+						<form th:if="${isFavorite}" method="post"
+							th:action="@{/favorites/{houseId}/delete(houseId=${house.id})}">
+							<input type="hidden" name="houseId" th:value="${house.id}">
+							<input type="hidden" name="userId" th:value="${#authentication.principal.user.id}">
+							<button type="submit">&#9829; お気に入り解除</button>
+						</form>
+
+
+
+						<!-- Thymeleafテンプレート内のお気に入り追加フォーム -->
+						<form th:unless="${isFavorite}" method="post"
+							th:action="@{/favorites/{houseId}/create(houseId=${house.id})}">
+							<input type="hidden" name="houseId" th:value="${house.id}">
+							<input type="hidden" name="userId" th:value="${#authentication.principal.user.id}">
+							<button type="submit">&#9825; お気に入り追加</button>
+						</form>
+
+
 
 						<h1 class="mb-4 text-center" th:text="${house.getName()}"></h1>
 
