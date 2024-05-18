@@ -100,13 +100,15 @@ public class HouseController {
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		
 		House house = houseRepository.getReferenceById(id);
-		boolean isFavorite = favoriteService.isFavorite(house,userDetailsImpl.getUser());
+		/*boolean isFavorite = favoriteService.isFavorite(house, userDetailsImpl.getUser());*/
+		boolean isFavorite = false;
 		
 		
 		Page<Reviewformat> reviewPage;
 
 		if (userDetailsImpl != null && userDetailsImpl.getUser() != null) {
 			/*	reviewPage = reviewRepository.findAll(pageable);*/
+			isFavorite = favoriteService.isFavorite(house, userDetailsImpl.getUser());
 			reviewPage = reviewRepository.findByHouseOrderByCreatedAtDesc(house, pageable);
 
 			// レビューが存在しない場合の処理
